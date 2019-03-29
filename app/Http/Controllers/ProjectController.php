@@ -11,34 +11,50 @@ class ProjectController extends Controller
         $projects = Project::all();
         return view('projects.index',compact('projects'));
     }
-    public function create(){
+    public function create(Project $project){
+
         return view('projects.create_project');
     }
-    public function store(){
-        $project = new \App\Project;
-        $project->title = request('title');
-        $project->desc = request('description');
-        $project->save();
-        return redirect("/projects");
+    public function store(Project $project){
+
+       $validated = request()->validate([
+            'title' => 'required | min:6 | unique:projects',
+            'desc'  => 'required | min:6',
+
+            ]);
+            Project::create($validated);
+            // Project::create([
+            //     'title'=>request('title'),
+            //     'desc'=>request('desc')
+            // ]);
+
+       // $project->title = request('title');
+       // $project->desc = request('description');
+       // $project->save();
+       return redirect("/projects");
 
     }
-    public function edit($id){
-        $project = Project::find($id);
+    public function edit(Project $project){
 
         return view('projects.edit',compact('project'));
     }
 
-    public function update($id){
-        $project = Project::find($id);
+    public function update(Project $project){
+
         $project->title = request('title');
-        $project->desc = request('description');
+        $project->desc = request('desc');
         $project->update();
         return redirect("/projects");
 
     }
-    public function show($id){
-        $project = Project::find($id);
+    public function show(Project $project){
+
 
         return view('projects.display',compact('project'));
+    }
+
+    public function destroy(Project $project){
+        $project->delete();
+        return redirect("/projects");
     }
 }

@@ -22,7 +22,7 @@
                             <input type="text" name="title" value="{{ $project->title }}" placeholder="Title of the project"/>
                             <br/>
                             Project Description:<br/>
-                            <textarea name="description" rows="10" cols="60" placeholder="Project Description write here">
+                            <textarea name="desc" rows="10" cols="60" placeholder="Project Description write here">
                                 {{ $project->desc }}
                             </textarea>
                             <br/>
@@ -30,6 +30,7 @@
 
 
                         </form>
+
                     </fieldset>
             </div>
         </div>

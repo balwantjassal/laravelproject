@@ -20,13 +20,27 @@ GET /projects/1/edit   Display Form
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::resource('projects','ProjectController');
-Route::get('/projects', "ProjectController@index");
-Route::get('/projects/create', "ProjectController@create");
-Route::post('/projects', "ProjectController@store");
-Route::patch('/projects/{project}',"ProjectController@update");
-Route::get('/projects/{project}/edit',"ProjectController@edit");
-Route::get('/projects/{project}',"ProjectController@show"); //To display a given project
+Route::resource('projects','ProjectController');
+Route::PATCH('/tasks/{task}','ProjectTaskController@update');
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Route::get('/projects', "ProjectController@index");
+//Route::get('/projects/create', "ProjectController@create");
+//Route::post('/projects', "ProjectController@store");
+//Route::patch('/projects/{project}',"ProjectController@update");
+//Route::get('/projects/{project}/edit',"ProjectController@edit");
+//Route::get('/projects/{project}',"ProjectController@show"); //To display a given project
 
 
 
